@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Adapt2Hide | ICIP 2026 · Spotlight Oral</title>
+  <meta name="description" content="Adapt2Hide: Leveraging Off-the-shelf Autoencoder for Reversible Visual Processing. An ICIP 2026 spotlight oral paper on hiding and recovering original images within their processed versions using pretrained autoencoders and LoRA.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Adapt2Hide — ICIP 2026 · Spotlight Oral">
+  <meta property="og:description" content="Hide an original image inside its processed version. Recover it with Adapt2Hide, a reversible visual processing method built on pretrained autoencoders and LoRA.">
+  <meta property="og:image" content="images/social-preview.jpg">
+  <meta property="og:image:alt" content="Adapt2Hide examples of reversible censorship, AI editing, and grayscale conversion.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="citation_title" content="Adapt2Hide: Leveraging Off-the-shelf Autoencoder for Reversible Visual Processing">
+  <meta name="citation_author" content="Ernie Chu">
+  <meta name="citation_author" content="I-Sheng Fang">
+  <meta name="citation_author" content="Tai-Ming Huang">
+  <meta name="citation_author" content="Pin-Yen Chiu">
+  <meta name="citation_author" content="Vishal M. Patel">
+  <meta name="citation_author" content="Jun-Cheng Chen">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="IEEE International Conference on Image Processing (ICIP)">
+  <meta name="citation_doi" content="10.1109/ICIP61757.2026.11630116">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-paper" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4"/></symbol>
+  </svg>
+
+  <header class="header container">
+    <h1><span class="project-name">Adapt2Hide</span><span class="paper-title">Leveraging Off-the-shelf Autoencoder<br class="desktop-break"> for Reversible Visual Processing</span></h1>
+    <div class="venue"><span class="spotlight">ICIP 2026 Spotlight Oral (top 3%)</span></div>
+    <ul class="author-list" aria-label="Authors">
+      <li><a href="https://www.cs.jhu.edu/~schu23/" target="_blank" rel="noopener">Ernie Chu</a><sup>*,1,2</sup></li>
+      <li><a href="https://ishengfang.github.io/" target="_blank" rel="noopener">I-Sheng Fang</a><sup>*,1</sup></li>
+      <li><a href="https://teddy12155555.github.io/" target="_blank" rel="noopener">Tai-Ming Huang</a><sup>1</sup></li>
+      <li><a href="https://itsnickchiu.github.io/" target="_blank" rel="noopener">Pin-Yen Chiu</a><sup>1</sup></li>
+      <li><a href="https://engineering.jhu.edu/vpatel36/vishal-patel/" target="_blank" rel="noopener">Vishal M. Patel</a><sup>2</sup></li>
+      <li><a href="https://homepage.citi.sinica.edu.tw/pages/pullpull/index_en.html" target="_blank" rel="noopener">Jun-Cheng Chen</a><sup>1</sup></li>
+    </ul>
+    <div class="affiliation-list">
+      <p><sup>1</sup> Research Center for Information Technology Innovation, Academia Sinica</p>
+      <p><sup>2</sup> Johns Hopkins University</p>
+    </div>
+    <p class="contribution">* Equal contribution</p>
+    <div class="link-list" aria-label="Project resources">
+      <a class="pill" href="https://ieeexplore.ieee.org/document/11630116/" target="_blank" rel="noopener"><svg class="icon"><use href="#icon-paper"/></svg>Paper</a>
+      <a class="pill" href="paper/Adapt2Hide-supplementary.pdf" target="_blank" rel="noopener"><svg class="icon"><use href="#icon-paper"/></svg>Supplementary</a>
+      <a class="pill" href="https://github.com/aiiu-lab/Adapt2Hide" target="_blank" rel="noopener"><svg class="icon"><use href="#icon-code"/></svg>Code</a>
+    </div>
+    <nav class="section-nav" aria-label="Page sections"><a href="#abstract">Abstract</a><span aria-hidden="true">·</span><a href="#architecture">Architecture</a><span aria-hidden="true">·</span><a href="#results">Results</a><span aria-hidden="true">·</span><a href="#citation">BibTeX</a></nav>
+  </header>
+
+  <main id="main" class="container">
+    <figure class="teaser">
+      <a class="zoomable" href="images/teaser.webp" data-zoom aria-label="Enlarge the Adapt2Hide overview figure"><img src="images/teaser.webp" alt="Overview of Adapt2Hide: an original image is hidden within a processed image and later reconstructed. Examples show pixelation, AI editing, blur, black censorship, and grayscale." width="2200" height="1056" fetchpriority="high"></a>
+      <figcaption><strong>Process the image. Keep the original within.</strong> Adapt2Hide hides the original image inside its processed version through imperceptible residuals, enabling high-quality reconstruction after censorship, AI editing, and more.</figcaption>
+    </figure>
+
+    <section id="abstract" class="section" aria-labelledby="abstract-title">
+      <div class="section-heading"><p class="eyebrow">Adapt to hide</p><h2 id="abstract-title">Abstract</h2></div>
+      <p class="abstract-text">Reversible visual processing, a novel task of image steganography by hiding and later receiving the original image from its processed version under various irreversible image processing operations, has diverse applications. Despite its potential, existing approaches are often specialized for specific tasks and face limitations in handling real-world degradations like image quantization, thus hindering their practical adoption. In this work, we find that large pretrained autoencoders (AEs) are surprisingly suitable for reversible visual processing. We thus introduce Adapt to Hide (Adapt2Hide), a novel reversible visual processing method leveraging off-the-shelf pretrained AEs and LoRA adapters. Unlike prior approaches, Adapt2Hide operates in the latent space of AEs, offering high-quality image reconstruction with minimal additional parameters (around 10% of the base AE) and efficient training with LoRA. Adapt2Hide’s design enables robust performance across a wide range of tasks, including reversible visual censorship and reversible AI editing, allowing users to retrieve the original image from censored or AI-edited images with competitive perceptual quality compared to specialized models. Additionally, Adapt2Hide demonstrates the robustness of common distortions such as cropping, quantization, and compression. Code is at <a href="https://github.com/aiiu-lab/Adapt2Hide" target="_blank" rel="noopener">github.com/aiiu-lab/Adapt2Hide</a>.</p>
+      <div class="highlights">
+        <div><span class="highlight-value">One pretrained AE</span><p>Adapt the Stable Diffusion v1.5 autoencoder with LoRA.</p></div>
+        <div><span class="highlight-value">13% trainable</span><p>Additional parameters with rank-64 LoRA in the main experiments.</p></div>
+        <div><span class="highlight-value">A simple L2 loss</span><p>Learn to reconstruct the original image’s latent representation.</p></div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section" aria-labelledby="architecture-title">
+      <div class="section-heading"><p class="eyebrow">How it works</p><h2 id="architecture-title">Architecture</h2></div>
+      <p class="section-intro">A pretrained autoencoder already knows how to reconstruct images. We adapt it to hide and recover their latent representations.</p>
+      <figure>
+        <a class="zoomable paper-figure" href="images/system-diagram.webp" data-zoom aria-label="Enlarge the Adapt2Hide architecture diagram"><img src="images/system-diagram.webp" alt="Adapt2Hide architecture: a frozen encoder maps the message image to a latent; a LoRA-adapted decoder and conformity layer embed it in a cover image; a LoRA-adapted encoder retrieves the latent; the frozen decoder reconstructs the message. Optional noise layers simulate distortions during training." width="2200" height="518" loading="lazy"></a>
+        <figcaption>The pretrained decoder becomes the steganographic encoder, and the pretrained encoder becomes the steganographic decoder, using trainable LoRA adapters. Residuals are amplified 100× for visualization. <a href="paper/architecture.pdf" target="_blank" rel="noopener">View full-resolution figure</a>.</figcaption>
+      </figure>
+      <ol class="method-steps">
+        <li><span class="step-number">01</span><div><h3>Encode the original</h3><p>The frozen AE encoder maps the original message image to a compact latent representation.</p></div></li>
+        <li><span class="step-number">02</span><div><h3>Hide in the processed image</h3><p>The LoRA-adapted decoder produces a signal. A conformity layer bounds the residual to ±2 on the 0–255 pixel scale.</p></div></li>
+        <li><span class="step-number">03</span><div><h3>Recover the source</h3><p>The LoRA-adapted encoder retrieves the message latent; the frozen decoder reconstructs the original image.</p></div></li>
+      </ol>
+      <p class="note">Distortion-aware training adds noise layers for 8-bit quantization, JPEG compression, or cropping. The paper evaluates task-specific model variants for these settings.</p>
+    </section>
+
+    <section id="results" class="section" aria-labelledby="results-title">
+      <div class="section-heading"><p class="eyebrow">From processed to recovered</p><h2 id="results-title">Results</h2></div>
+      <p class="section-intro">Reversible visual censorship on ImageNet-1K and reversible AI editing on InstructPix2Pix.</p>
+      <figure>
+        <a class="zoomable paper-figure" href="images/main-clean.webp" data-zoom aria-label="Enlarge qualitative results from the paper"><img src="images/main-clean.webp" alt="Uncurated clean-setting results for censorship and AI editing. Rows compare the cover, ground-truth message, reconstructions without spatial quantization training, and Adapt2Hide reconstructions." width="2200" height="786" loading="lazy"></a>
+        <figcaption>Uncurated samples from the paper (random seed 123). The encoded images retain the appearance of their covers, while the recovered images reconstruct the message content. Click any figure to enlarge it.</figcaption>
+      </figure>
+      <h3 class="subsection-title">Reconstruction quality</h3>
+      <p class="table-description">Selected results from Table 1. Higher PSNR and SSIM are better; lower LPIPS is better.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Reconstruction quality table; scroll horizontally on small screens">
+        <table>
+          <caption class="sr-only">Reversibility of Adapt2Hide with the corresponding noise layer for each evaluation setting.</caption>
+          <thead><tr><th scope="col" rowspan="2">Setting / model</th><th scope="colgroup" colspan="3">Visual censorship</th><th scope="colgroup" colspan="3">AI editing</th></tr><tr><th scope="col">PSNR ↑</th><th scope="col">SSIM ↑</th><th scope="col">LPIPS ↓</th><th scope="col">PSNR ↑</th><th scope="col">SSIM ↑</th><th scope="col">LPIPS ↓</th></tr></thead>
+          <tbody>
+            <tr class="primary-row"><th scope="row">Clean <span>8-bit quantization</span></th><td>32.90</td><td>0.9545</td><td>0.0417</td><td>32.46</td><td>0.9577</td><td>0.0341</td></tr>
+            <tr><th scope="row">JPEG <span>Real JPEG noise layer</span></th><td>29.99</td><td>0.8957</td><td>0.0601</td><td>21.65</td><td>0.7011</td><td>0.3933</td></tr>
+            <tr><th scope="row">Cropping <span>Crop noise layer</span></th><td>26.56</td><td>0.8153</td><td>0.1729</td><td>22.52</td><td>0.7177</td><td>0.2371</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Message reconstructions are evaluated against the pretrained VAE’s reconstruction of the reference image. Clean images are saved and reloaded as 8-bit PNGs. In the JPEG setting, half of the encoded images are additionally saved at quality 90. See the paper for full metrics and ablations.</p>
+      <div class="applications">
+        <div><h3>Reversible visual censorship</h3><p>Recover embedded source content after pixelation, blur, or black masking. This experiment also illustrates why the visual appearance of censorship alone does not guarantee that information has been removed.</p></div>
+        <div><h3>Reversible AI editing</h3><p>Embed an image’s source in its AI-edited counterpart, allowing the source to be retrieved later and supporting editing traceability.</p></div>
+        <div><h3>Beyond the main tasks</h3><p>The supplementary material explores reversible style transfer, grayscale, stereo mononization, and general image steganography.</p></div>
+      </div>
+      <p class="section-link"><a href="paper/Adapt2Hide-supplementary.pdf" target="_blank" rel="noopener">More comparisons and ablations in the supplementary material (PDF) <span aria-hidden="true">↗</span></a></p>
+    </section>
+
+    <section id="citation" class="section citation-section" aria-labelledby="citation-title">
+      <div class="section-heading"><p class="eyebrow">Cite this work</p><h2 id="citation-title">BibTeX</h2></div>
+      <div class="citation-box">
+        <div class="citation-toolbar"><span>Adapt2Hide · ICIP 2026</span><button type="button" id="copy-citation"><svg class="icon"><use href="#icon-copy"/></svg><span>Copy BibTeX</span></button></div>
+        <pre><code id="bibtex">@inproceedings{chu2026adapt2hide,
+  title     = {{Adapt2Hide}: Leveraging Off-the-shelf Autoencoder
+               for Reversible Visual Processing},
+  author    = {Chu, Ernie and Fang, I-Sheng and Huang, Tai-Ming
+               and Chiu, Pin-Yen and Patel, Vishal M.
+               and Chen, Jun-Cheng},
+  booktitle = {IEEE International Conference on Image Processing (ICIP)},
+  year      = {2026}
+}</code></pre>
+      </div>
+      <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+      <p class="citation-download"><a href="paper/Adapt2Hide.bib" download>Download citation</a></p>
+    </section>
+
+    <section class="acknowledgments" aria-labelledby="acknowledgments-title">
+      <h2 id="acknowledgments-title">Acknowledgments</h2>
+      <p>This research is supported by the National Science and Technology Council (NSTC), Taiwan under Grants 114-2221-E-001-004, 114-2221-E-001-016, 114-2634-F-001-001-MBK, 114-2634-F-002-004, and 113-2634-F-002-008, and by Academia Sinica under Grants AS-IAIA-114-M10 and AS-GCS-115-M06. We thank the National Center for High-performance Computing (NCHC) of National Applied Research Laboratories (NARLabs), Taiwan, for computational and storage resources.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content container">
+      <div class="footer-brand"><span>Adapt2Hide</span><p>ICIP 2026 · Spotlight Oral</p></div>
+      <div class="footer-credit"><p>Website theme adapted from <a href="https://github.com/medm2023/medm2023.github.io" target="_blank" rel="noopener">MeDM</a>.</p><p>Website licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Teaser image credits: Unsplash, the White House, and NYU Tandon.</p></div>
+    </div>
+  </footer>
+
+  <dialog id="image-dialog" aria-label="Enlarged figure">
+    <button type="button" id="close-dialog" aria-label="Close enlarged figure">×</button>
+    <img id="dialog-image" alt="">
+    <p>Press Esc or click outside the image to close.</p>
+  </dialog>
+</body>
+</html>
